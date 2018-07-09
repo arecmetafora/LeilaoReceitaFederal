@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="data" type="com.arecmetafora.leilaoreceitafederal.model.to.Filter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/auction_background"
+            android:textColor="@color/auction_color"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="@{data.label}"
+            tools:text="Tipo de Lote"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:entries="@{data.options}"
+            app:layout="@{@layout/home_filter_options}"/>
+
+    </LinearLayout>
+
+</layout>

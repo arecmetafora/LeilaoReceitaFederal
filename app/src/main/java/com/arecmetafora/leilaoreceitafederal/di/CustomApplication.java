@@ -12,8 +12,21 @@ import dagger.android.support.DaggerApplication;
  */
 public class CustomApplication extends DaggerApplication {
 
+    /**
+     * Application main component.
+     */
+    private AppComponent appComponent;
+
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerAppComponent.builder().application(this).build();
+        appComponent = DaggerAppComponent.builder().application(this).build();
+        return appComponent;
+    }
+
+    /**
+     * @return The application main component.
+     */
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 }

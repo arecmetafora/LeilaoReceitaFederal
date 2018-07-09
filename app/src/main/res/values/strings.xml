@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Leilao - Receita Federal</string>
+    <string name="app_name">Leilão - Receita Federal</string>
 
     <string name="base_url">http://www25.receita.fazenda.gov.br/sle-sociedade/api/</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="action_filter">Filtro</string>
+    <string name="lot">Lote:</string>
+    <string name="bid_end_date">Propostas até</string>
+    <string name="bid_opening_date">Lances a partir de</string>
 </resources>

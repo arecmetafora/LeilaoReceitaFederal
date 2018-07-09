@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable name="viewModel" type="com.arecmetafora.leilaoreceitafederal.viewmodel.HomeViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/indeterminate"
+            android:indeterminateDrawable="@drawable/progress_bar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.data == null ? View.VISIBLE : View.GONE}"/>
+
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/home_filter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:visibility="@{viewModel.data != null ? View.VISIBLE : View.GONE}">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="end"
+                    app:entries="@{viewModel.data.auctionEvents}"
+                    app:layout="@{@layout/home_auction_events}"/>
+
+            </ScrollView>
+
+            <ScrollView
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@android:color/white"
+                    app:entries="@{viewModel.data.filters}"
+                    app:layout="@{@layout/home_filter}"/>
+
+            </ScrollView>
+
+        </android.support.v4.widget.DrawerLayout>
+
+    </FrameLayout>
+</layout>

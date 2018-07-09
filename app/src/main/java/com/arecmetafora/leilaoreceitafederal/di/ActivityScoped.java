@@ -1,4 +1,4 @@
-package com.arecmetafora.leilaoreceitafederal.app;
+package com.arecmetafora.leilaoreceitafederal.di;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package ui.main;
+package com.arecmetafora.leilaoreceitafederal.view;
 
 import dagger.Module;
 

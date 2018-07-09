@@ -1,9 +1,9 @@
-package com.arecmetafora.leilaoreceitafederal.app;
+package com.arecmetafora.leilaoreceitafederal.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import ui.main.MainActivity;
-import ui.main.MainActivityModule;
+import com.arecmetafora.leilaoreceitafederal.view.MainActivity;
+import com.arecmetafora.leilaoreceitafederal.view.MainActivityModule;
 
 @Module
 public abstract class ActivityBindingModule {

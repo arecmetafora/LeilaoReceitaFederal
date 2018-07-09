@@ -1,4 +1,4 @@
-package ui.main;
+package com.arecmetafora.leilaoreceitafederal.view;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

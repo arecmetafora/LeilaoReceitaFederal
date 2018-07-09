@@ -1,4 +1,4 @@
-package com.arecmetafora.leilaoreceitafederal.app;
+package com.arecmetafora.leilaoreceitafederal.di;
 
 import android.app.Application;
 import android.content.Context;

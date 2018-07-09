@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+    <item android:drawable="@drawable/bid_hammer_0" android:duration="20" />
+    <item android:drawable="@drawable/bid_hammer_1" android:duration="30" />
+    <item android:drawable="@drawable/bid_hammer_2" android:duration="30" />
+    <item android:drawable="@drawable/bid_hammer_3" android:duration="35" />
+    <item android:drawable="@drawable/bid_hammer_4" android:duration="35" />
+    <item android:drawable="@drawable/bid_hammer_5" android:duration="40" />
+    <item android:drawable="@drawable/bid_hammer_6" android:duration="40" />
+    <item android:drawable="@drawable/bid_hammer_7" android:duration="45" />
+    <item android:drawable="@drawable/bid_hammer_8" android:duration="150" />
+    <item android:drawable="@drawable/bid_hammer_7" android:duration="50" />
+    <item android:drawable="@drawable/bid_hammer_6" android:duration="40" />
+    <item android:drawable="@drawable/bid_hammer_5" android:duration="40" />
+    <item android:drawable="@drawable/bid_hammer_4" android:duration="35" />
+    <item android:drawable="@drawable/bid_hammer_3" android:duration="30" />
+    <item android:drawable="@drawable/bid_hammer_2" android:duration="30" />
+    <item android:drawable="@drawable/bid_hammer_1" android:duration="25" />
+    <item android:drawable="@drawable/bid_hammer_0" android:duration="20" />
+    <item android:drawable="@drawable/bid_hammer_01" android:duration="20" />
+    <item android:drawable="@drawable/bid_hammer_02" android:duration="15" />
+    <item android:drawable="@drawable/bid_hammer_03" android:duration="15" />
+    <item android:drawable="@drawable/bid_hammer_04" android:duration="10" />
+    <item android:drawable="@drawable/bid_hammer_05" android:duration="300" />
+    <item android:drawable="@drawable/bid_hammer_04" android:duration="40" />
+    <item android:drawable="@drawable/bid_hammer_03" android:duration="40" />
+    <item android:drawable="@drawable/bid_hammer_02" android:duration="35" />
+    <item android:drawable="@drawable/bid_hammer_01" android:duration="35" />
+</animation-list>

@@ -6,4 +6,5 @@
     <string name="lot">Lote:</string>
     <string name="bid_end_date">Propostas até</string>
     <string name="bid_opening_date">Lances a partir de</string>
+    <string name="action_search">Buscar</string>
 </resources>

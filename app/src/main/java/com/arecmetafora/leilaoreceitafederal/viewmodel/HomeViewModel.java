@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.text.Html;
 
 import com.arecmetafora.leilaoreceitafederal.di.CustomApplication;
 import com.arecmetafora.leilaoreceitafederal.model.ApiService;
@@ -81,6 +82,21 @@ public class HomeViewModel extends BaseViewModel {
             mFilterChanged = false;
             refreshData();
         }
+    }
+
+    /**
+     * Performs a search from home interface.
+     * @param query
+     */
+    public void search(String query) {
+        mFilters.clear();
+        if(query != null) {
+            List<String> filterValues = new LinkedList<>();
+            filterValues.add(query);
+            mFilters.put("q", filterValues);
+        }
+        mFilterChanged = true;
+        applyFilters();
     }
 
     /**

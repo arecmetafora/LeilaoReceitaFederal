@@ -18,5 +18,5 @@ public interface ApiService {
      * @return Gets all home information from remote repository.
      */
     @GET("portal")
-    Call<Portal> getHomeData(@QueryMap Map<String, List<String>> filters);
+    Call<Portal> getHomeData(@QueryMap(encoded = true) Map<String, List<String>> filters);
 }

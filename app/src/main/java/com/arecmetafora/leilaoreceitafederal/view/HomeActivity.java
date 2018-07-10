@@ -1,11 +1,14 @@
 package com.arecmetafora.leilaoreceitafederal.view;
 
+import android.app.SearchManager;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,18 +23,19 @@ public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private boolean mHasFilters = false;
+    private HomeViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
         ActivityHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         binding.setLifecycleOwner(this);
-        binding.setViewModel(viewModel);
+        binding.setViewModel(mViewModel);
 
-        viewModel.getData().observe(this, portal -> {
+        mViewModel.getData().observe(this, portal -> {
             mHasFilters = portal != null && portal.filters != null && portal.filters.length != 0;
             invalidateOptionsMenu();
         });
@@ -48,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
-                viewModel.applyFilters();
+                mViewModel.applyFilters();
             }
 
             @Override
@@ -63,8 +67,33 @@ public class HomeActivity extends AppCompatActivity {
         inflater.inflate(R.menu.home, menu);
 
         if(!mHasFilters) {
-            menu.getItem(0).setVisible(false);
+            menu.findItem(R.id.action_filter).setVisible(false);
         }
+
+        // Configuring the search view
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        assert searchManager != null;
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mViewModel.search(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(() -> {
+            mViewModel.search(null);
+            return false;
+        });
 
         return true;
     }

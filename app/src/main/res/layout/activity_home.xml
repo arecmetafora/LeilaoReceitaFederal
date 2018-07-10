@@ -28,12 +28,12 @@
             android:id="@+id/home_filter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:visibility="@{viewModel.data != null ? View.VISIBLE : View.GONE}">
+            android:fitsSystemWindows="true">
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.data != null ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -41,7 +41,8 @@
                     android:orientation="vertical"
                     android:layout_gravity="end"
                     app:entries="@{viewModel.data.auctionEvents}"
-                    app:layout="@{@layout/home_auction_events}"/>
+                    app:layout="@{@layout/home_auction_events}"
+                    app:viewModel="@{viewModel}"/>
 
             </ScrollView>
 
@@ -56,7 +57,8 @@
                     android:orientation="vertical"
                     android:background="@android:color/white"
                     app:entries="@{viewModel.data.filters}"
-                    app:layout="@{@layout/home_filter}"/>
+                    app:layout="@{@layout/home_filter}"
+                    app:viewModel="@{viewModel}"/>
 
             </ScrollView>
 

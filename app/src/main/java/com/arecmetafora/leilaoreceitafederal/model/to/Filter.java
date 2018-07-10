@@ -8,9 +8,9 @@ public class Filter {
     public String label;
 
     @SerializedName("opcoes")
-    public Options[] options;
+    public Option[] options;
 
-    public static class Options {
+    public static class Option {
         public String id;
         public String label;
 

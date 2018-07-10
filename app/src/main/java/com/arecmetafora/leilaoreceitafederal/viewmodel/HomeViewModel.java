@@ -7,7 +7,15 @@ import android.support.annotation.NonNull;
 
 import com.arecmetafora.leilaoreceitafederal.di.CustomApplication;
 import com.arecmetafora.leilaoreceitafederal.model.ApiService;
+import com.arecmetafora.leilaoreceitafederal.model.to.Filter;
 import com.arecmetafora.leilaoreceitafederal.model.to.Portal;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -21,7 +29,13 @@ public class HomeViewModel extends BaseViewModel {
     ApiService mApiService;
 
     private MutableLiveData<Portal> mData;
+    private Map<String, List<String>> mFilters = new HashMap<>();
+    private boolean mFilterChanged = false;
 
+    /**
+     * Creates a new view-model entity for home screen.
+     * @param application The Android application reference.
+     */
     public HomeViewModel(@NonNull Application application) {
         super(application);
         ((CustomApplication)application).getAppComponent().inject(this);
@@ -42,7 +56,7 @@ public class HomeViewModel extends BaseViewModel {
      * Load data information from remote service.
      */
     private void refreshData() {
-        mApiService.getHomeData().enqueue(new Callback<Portal>() {
+        mApiService.getHomeData(mFilters).enqueue(new Callback<Portal>() {
             @Override
             public void onResponse(@NonNull Call<Portal> call, @NonNull Response<Portal> response) {
                 Portal data = response.body();
@@ -56,5 +70,52 @@ public class HomeViewModel extends BaseViewModel {
                 refreshData();
             }
         });
+    }
+
+    /**
+     * Applies the filter, refreshing the screen data.
+     */
+    public void applyFilters() {
+        if(mFilterChanged) {
+            mData.setValue(null);
+            mFilterChanged = false;
+            refreshData();
+        }
+    }
+
+    /**
+     * Checks if a filter option is selected.
+     * @param filter The filter to be checked.
+     * @param filterOption The filter option to be checked.
+     * @return True if the filter option was selected, or False otherwise.
+     */
+    public boolean isFilterSelected(Filter filter, Filter.Option filterOption) {
+        List<String> filterValues = mFilters.get(filter.id);
+        return filterValues != null && filterValues.contains(filterOption.id);
+    }
+
+    /**
+     * Selects/Unselects a filter option from a filter,
+     * @param filter A filter to be selected.
+     * @param filterOption A filter option to be selected.
+     * @param isChecked Whether the filter option is selected or unselected.
+     */
+    public void selectFilter(Filter filter, Filter.Option filterOption, boolean isChecked) {
+        mFilterChanged = true;
+        List<String> filterValues = mFilters.get(filter.id);
+        if(isChecked) {
+            if(filterValues == null) {
+                filterValues = new LinkedList<>();
+            }
+            filterValues.add(filterOption.id);
+            mFilters.put(filter.id, filterValues);
+        } else {
+            if(filterValues != null && filterValues.size() > 0) {
+                filterValues.remove(filterOption.id);
+            }
+            if(filterValues == null || filterValues.size() == 0) {
+                mFilters.remove(filter.id);
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@
 
     <data>
         <variable name="data" type="com.arecmetafora.leilaoreceitafederal.model.to.Filter" />
+        <variable name="viewModel" type="com.arecmetafora.leilaoreceitafederal.viewmodel.HomeViewModel" />
     </data>
 
     <LinearLayout
@@ -28,7 +29,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:entries="@{data.options}"
-            app:layout="@{@layout/home_filter_options}"/>
+            app:layout="@{@layout/home_filter_options}"
+            app:parent="@{data}"
+            app:viewModel="@{viewModel}" />
 
     </LinearLayout>
 

@@ -4,12 +4,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="data" type="com.arecmetafora.leilaoreceitafederal.model.to.Filter.Options" />
+        <variable name="parent" type="com.arecmetafora.leilaoreceitafederal.model.to.Filter" />
+        <variable name="data" type="com.arecmetafora.leilaoreceitafederal.model.to.Filter.Option" />
+        <variable name="viewModel" type="com.arecmetafora.leilaoreceitafederal.viewmodel.HomeViewModel" />
     </data>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{String.format(`%s (%d)`, data.label, data.count)}"/>
+        android:text="@{String.format(`%s (%d)`, data.label, data.count)}"
+        android:checked="@{viewModel.isFilterSelected(parent, data)}"
+        android:onCheckedChanged="@{(view, isChecked) -> viewModel.selectFilter(parent, data, isChecked)}"/>
 
 </layout>

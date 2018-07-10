@@ -5,6 +5,7 @@
 
     <data>
         <variable name="data" type="com.arecmetafora.leilaoreceitafederal.model.to.Auction" />
+        <variable name="viewModel" type="com.arecmetafora.leilaoreceitafederal.viewmodel.HomeViewModel" />
     </data>
 
     <android.support.v7.widget.CardView

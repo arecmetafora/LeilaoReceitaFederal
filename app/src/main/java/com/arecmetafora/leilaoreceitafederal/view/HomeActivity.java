@@ -3,12 +3,14 @@ package com.arecmetafora.leilaoreceitafederal.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.arecmetafora.leilaoreceitafederal.R;
 import com.arecmetafora.leilaoreceitafederal.databinding.ActivityHomeBinding;
@@ -35,6 +37,24 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         mDrawerLayout = findViewById(R.id.home_filter);
+        mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                viewModel.applyFilters();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
     }
 
     @Override
@@ -54,7 +74,11 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_filter:
-                mDrawerLayout.openDrawer(Gravity.END);
+                if(mDrawerLayout.isDrawerOpen(Gravity.END)) {
+                    mDrawerLayout.closeDrawer(Gravity.END);
+                } else {
+                    mDrawerLayout.openDrawer(Gravity.END);
+                }
                 return true;
 
             default:

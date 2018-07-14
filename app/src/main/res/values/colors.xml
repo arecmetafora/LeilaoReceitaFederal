@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="auction_color">#2E6DA3</color>
+    <color name="bid_minimum_value_background">#55000000</color>
+    <color name="bid_minimum_value_foreground">#FFFFFF</color>
 </resources>

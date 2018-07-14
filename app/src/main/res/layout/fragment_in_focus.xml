@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.text.NumberFormat"/>
+        <variable name="data" type="com.arecmetafora.leilaoreceitafederal.model.to.InFocus" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="4dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/in_focus_lot_image"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{data.lotImage}"
+                    app:layout_constraintBottom_toTopOf="@+id/in_focus_lot_number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/in_focus_lot_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bid_minimum_value_background"
+                    android:gravity="center_horizontal"
+                    android:text="@{String.format(`%s %s`, @string/bid_minimum_value, NumberFormat.getCurrencyInstance().format(data.lotValue))}"
+                    android:textColor="@color/bid_minimum_value_foreground"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/in_focus_lot_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Valor Mínimo R$ 15.000,00" />
+
+                <TextView
+                    android:id="@+id/in_focus_lot_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{String.format(`%s %d`, @string/lot, data.lotNumber)}"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/in_focus_auction_city"
+                    app:layout_constraintEnd_toStartOf="@+id/in_focus_lot_separator"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Lote: 7" />
+
+                <TextView
+                    android:id="@+id/in_focus_lot_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/separator"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/in_focus_lot_number"
+                    app:layout_constraintEnd_toStartOf="@+id/in_focus_auction_number"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/in_focus_lot_number" />
+
+                <TextView
+                    android:id="@+id/in_focus_auction_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.number}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/in_focus_lot_number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/in_focus_lot_separator"
+                    tools:text="0021901/0000001/2018 BRASÍLIA" />
+
+                <TextView
+                    android:id="@+id/in_focus_auction_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.city}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/in_focus_auction_organ"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="RECIFE" />
+
+                <TextView
+                    android:id="@+id/in_focus_auction_organ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:text="@{data.organ}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/in_focus_auction_city"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/in_focus_auction_city"
+                    tools:text="Receita Federal" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+</layout>

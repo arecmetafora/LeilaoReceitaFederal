@@ -54,7 +54,7 @@ public abstract class AppModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .callbackExecutor(Executors.newSingleThreadExecutor())
-                .baseUrl(context.getString(R.string.base_url))
+                .baseUrl(context.getString(R.string.base_url_api))
                 .build();
     }
 

@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.text.Html;
+import android.util.Log;
 
 import com.arecmetafora.leilaoreceitafederal.di.CustomApplication;
 import com.arecmetafora.leilaoreceitafederal.model.ApiService;
@@ -68,6 +69,7 @@ public class HomeViewModel extends BaseViewModel {
             @Override
             public void onFailure(@NonNull Call<Portal> call, @NonNull Throwable t) {
                 // Infinity retry while load fails (TODO: improve retry mechanism)
+                Log.e("Error", t.getMessage(), t);
                 refreshData();
             }
         });

@@ -5,6 +5,7 @@
     <data>
         <import type="android.view.View" />
         <variable name="viewModel" type="com.arecmetafora.leilaoreceitafederal.viewmodel.HomeViewModel" />
+        <variable name="fragmentManager" type="android.support.v4.app.FragmentManager" />
     </data>
 
     <FrameLayout
@@ -33,16 +34,33 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="@{viewModel.data != null ? View.VISIBLE : View.GONE}">
+                android:visibility="@{viewModel.data != null ? View.VISIBLE : View.GONE}"
+                android:background="#f2f2f2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="end"
-                    app:entries="@{viewModel.data.auctionEvents}"
-                    app:layout="@{@layout/home_auction_events}"
-                    app:viewModel="@{viewModel}"/>
+                    android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/home_inFocus"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:visibility="@{viewModel.data.inFocuses.length > 0 ? View.VISIBLE : View.GONE}"
+                        app:fragmentManager="@{fragmentManager}"
+                        app:entries="@{viewModel.data.inFocuses}" />
+
+                    <LinearLayout
+                        android:id="@+id/home_auctionEvents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="end"
+                        app:entries="@{viewModel.data.auctionEvents}"
+                        app:layout="@{@layout/home_auction_events}"
+                        app:viewModel="@{viewModel}"/>
+
+                </LinearLayout>
 
             </ScrollView>
 
@@ -52,6 +70,7 @@
                 android:layout_gravity="end">
 
                 <LinearLayout
+                    android:id="@+id/home_filters"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

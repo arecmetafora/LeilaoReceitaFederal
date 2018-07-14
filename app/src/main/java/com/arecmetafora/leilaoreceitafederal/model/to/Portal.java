@@ -12,8 +12,8 @@ public class Portal {
     @SerializedName("filtros")
     public Filter[] filters;
 
-    //@SerializedName("destaques")
-    //InFocus[] inFocuses;
+    @SerializedName("destaques")
+    public InFocus[] inFocuses;
 
     @SerializedName("situacoes")
     public AuctionEvent[] auctionEvents;

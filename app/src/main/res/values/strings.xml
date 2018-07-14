@@ -1,10 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Leilão - Receita Federal</string>
+    <string name="base_url_api">http://www25.receita.fazenda.gov.br/sle-sociedade/api/</string>
+    <string name="base_url_images">http://arquivosleilao.receita.fazenda.gov.br/arquivos/images/</string>
 
-    <string name="base_url">http://www25.receita.fazenda.gov.br/sle-sociedade/api/</string>
+    <string name="app_name">Leilão - Receita Federal</string>
     <string name="action_filter">Filtro</string>
     <string name="lot">Lote:</string>
     <string name="bid_end_date">Propostas até</string>
     <string name="bid_opening_date">Lances a partir de</string>
     <string name="action_search">Buscar</string>
+    <string name="bid_minimum_value">Valor mínimo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="separator">-</string>
 </resources>

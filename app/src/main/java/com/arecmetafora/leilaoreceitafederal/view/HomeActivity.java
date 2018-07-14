@@ -17,9 +17,10 @@ import android.view.View;
 
 import com.arecmetafora.leilaoreceitafederal.R;
 import com.arecmetafora.leilaoreceitafederal.databinding.ActivityHomeBinding;
+import com.arecmetafora.leilaoreceitafederal.model.to.InFocus;
 import com.arecmetafora.leilaoreceitafederal.viewmodel.HomeViewModel;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements InFocusFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private boolean mHasFilters = false;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         ActivityHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         binding.setLifecycleOwner(this);
         binding.setViewModel(mViewModel);
+        binding.setFragmentManager(getSupportFragmentManager());
 
         mViewModel.getData().observe(this, portal -> {
             mHasFilters = portal != null && portal.filters != null && portal.filters.length != 0;
@@ -113,5 +115,10 @@ public class HomeActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onInFocusSelected(InFocus inFocus) {
+
     }
 }
